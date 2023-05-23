@@ -15,6 +15,7 @@ class ambulanceData {
         val pickuplocation: GeoPoint = GeoPoint(0.0, 0.0)
         val status: Boolean = false
         var vechilenumber: String = ""
+        var patientcontactnumber:String = ""
 //var ambulancedata = Ambulance()
     }
 }

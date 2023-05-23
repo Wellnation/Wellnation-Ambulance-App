@@ -92,7 +92,16 @@ class MainActivity : AppCompatActivity() {
                     origin = LatLng(mylocation.latitude,mylocation.longitude)
                 }
                 val status = it.getBoolean("status")
+                val call = it.getString("pidcontact")
+                if (call != null) {
+                    ambulanceData.patientcontactnumber = call
+                }
                 if (!status!!){
+                    binding.btncall.setOnClickListener {
+                        val phoneNumber = "tel:${ambulanceData.patientcontactnumber}"
+                        val dialerIntent = Intent(Intent.ACTION_DIAL, Uri.parse(phoneNumber))
+                        startActivity(dialerIntent)
+                    }
                     binding.mapView.visibility = View.VISIBLE
                     binding.eta.visibility = View.VISIBLE
                     binding.bookingstatus.visibility = View.INVISIBLE
@@ -248,7 +257,7 @@ class MainActivity : AppCompatActivity() {
                     val location = p0.lastLocation
                     // Use location data
                     val currentLocation = location?.let {
-                        GeoPoint(location.latitude,
+                        GeoPoint(it.latitude,
                             it.longitude)
                     }
                     val db = FirebaseFirestore.getInstance().collection("ambulance").document(ambulanceData.id)

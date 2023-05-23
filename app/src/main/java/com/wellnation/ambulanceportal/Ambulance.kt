@@ -13,7 +13,8 @@ data class Ambulance(
     val pickupStatus: Boolean = false,
     val pickuplocation: GeoPoint = GeoPoint(0.0, 0.0),
     val status: Boolean = false,
-    val vechilenumber: String = ""
+    val vechilenumber: String = "",
+    val pid:String = ""
 )
 
 
